@@ -6,11 +6,13 @@
     <title>MINO MW | Página Oficial</title>
     <style>
         :root {
-            --primary-color: #2d3748;
-            --secondary-color: #4a5568;
-            --accent-color: #3182ce;
-            --light-color: #f7fafc;
+            --primary-color: #2c5530;
+            --secondary-color: #4a7c59;
+            --accent-color: #8fb996;
+            --light-color: #f8f9fa;
+            --dark-color: #1a1f2e;
             --text-color: #2d3748;
+            --light-text: #718096;
         }
         
         * {
@@ -21,8 +23,8 @@
         }
         
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background-color: var(--light-color);
+            color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -34,13 +36,15 @@
         }
         
         header {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
         .header-content {
@@ -51,7 +55,14 @@
         
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+            font-weight: 300;
         }
         
         nav ul {
@@ -64,130 +75,238 @@
         }
         
         nav ul li a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
         
         nav ul li a:hover {
-            color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
         }
         
         .hero {
-            padding: 8rem 0 4rem;
+            padding: 12rem 0 6rem;
             text-align: center;
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.03) 0%, rgba(143, 185, 150, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80') center/cover;
+            opacity: 0.03;
+            z-index: -1;
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            font-weight: 700;
+            line-height: 1.2;
         }
         
         .hero p {
             font-size: 1.3rem;
             max-width: 600px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
+            margin: 0 auto 3rem;
+            color: var(--light-text);
+            font-weight: 400;
         }
         
         .btn {
             display: inline-block;
-            background: var(--accent-color);
+            background: var(--primary-color);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
             margin: 0.5rem;
+            border: 2px solid var(--primary-color);
+            font-size: 1rem;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: transparent;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 85, 48, 0.15);
         }
         
         .btn-outline {
             background: transparent;
-            border: 2px solid white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
         }
         
         .projects {
-            padding: 4rem 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            margin: 2rem 0;
-            border-radius: 20px;
+            padding: 6rem 0;
+            background: white;
         }
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
         
         .project-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
         }
         
         .project-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
         .project-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            opacity: 0.9;
         }
         
         .project-card h3 {
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .project-card p {
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
         
         footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
             text-align: center;
-            padding: 2rem 0;
-            background: rgba(0, 0, 0, 0.2);
-            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin: 1rem 0;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
         .social-link {
             color: white;
             font-size: 1.5rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            opacity: 0.8;
         }
         
         .social-link:hover {
             color: var(--accent-color);
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        .brand-highlight {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+            
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
             }
             
             nav ul {
-                flex-direction: column;
                 gap: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0;
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 0.5rem auto;
+                max-width: 250px;
             }
         }
     </style>
@@ -196,7 +315,7 @@
 <body>
     <header>
         <div class="container header-content">
-            <div class="logo">Alex Rivera</div>
+            <div class="logo">MINO <span>MW</span></div>
             <nav>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
@@ -209,39 +328,51 @@
 
     <section class="hero" id="inicio">
         <div class="container">
-            <h1>Creatividad y Análisis</h1>
-            <p>Explorando ideas a través de la investigación política y la creación musical</p>
+            <h1>Donde el <span class="brand-highlight">Análisis</span> se Encuentra con la <span class="brand-highlight">Creatividad</span></h1>
+            <p>Profesional dedicado a la investigación rigurosa en ciencia política y la creación artística en producción musical. Comprometido con la excelencia y la autenticidad en cada proyecto.</p>
             <div>
-                <a href="politica" class="btn">Análisis Político</a>
-                <a href="musica" class="btn btn-outline">Producción Musical</a>
+                <a href="politica" class="btn">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i>
+                    Explorar Análisis Político
+                </a>
+                <a href="musica" class="btn btn-outline">
+                    <i class="fas fa-music" style="margin-right: 8px;"></i>
+                    Descubrir Producción Musical
+                </a>
             </div>
         </div>
     </section>
 
     <section class="projects" id="proyectos">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 1rem;">Mis Proyectos</h2>
-            <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem; opacity: 0.9;">
-                Dos pasiones, un mismo compromiso con la excelencia y la autenticidad
+            <h2 style="text-align: center; margin-bottom: 1rem; color: var(--dark-color); font-size: 2.5rem; font-weight: 700;">Áreas de Especialización</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; color: var(--light-text); font-size: 1.1rem; line-height: 1.7;">
+                Dos disciplinas aparentemente distintas, unificadas por el rigor metodológico y la pasión por la excelencia
             </p>
             
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-university"></i>
                     </div>
                     <h3>Análisis Político</h3>
-                    <p>Investigación independiente y análisis riguroso de sistemas políticos contemporáneos</p>
-                    <a href="politica" class="btn" style="margin-top: 1rem;">Explorar Proyecto</a>
+                    <p>Investigación independiente y análisis riguroso de sistemas políticos contemporáneos. Especializado en el estudio de dinámicas de poder, procesos electorales y políticas públicas con enfoque multidisciplinario.</p>
+                    <a href="politica" class="btn" style="margin-top: 1rem;">
+                        <i class="fas fa-arrow-right" style="margin-right: 8px;"></i>
+                        Acceder al Contenido
+                    </a>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-music"></i>
+                        <i class="fas fa-sliders-h"></i>
                     </div>
                     <h3>Producción Musical</h3>
-                    <p>Creación y producción de música original, explorando nuevos sonidos y técnicas</p>
-                    <a href="musica" class="btn" style="margin-top: 1rem;">Escuchar Proyectos</a>
+                    <p>Creación y producción de composiciones originales que exploran la intersección entre tradición e innovación. Especializado en producción digital, arreglos musicales y técnicas de grabación profesional.</p>
+                    <a href="musica" class="btn" style="margin-top: 1rem;">
+                        <i class="fas fa-arrow-right" style="margin-right: 8px;"></i>
+                        Escuchar Proyectos
+                    </a>
                 </div>
             </div>
         </div>
@@ -249,16 +380,36 @@
 
     <footer id="contacto">
         <div class="container">
-            <h3>Conectemos</h3>
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <div class="footer-content">
+                <h3 style="margin-bottom: 1rem; font-weight: 600;">Trabajemos Juntos</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem; line-height: 1.6;">
+                    ¿Tienes un proyecto en mente? Hablemos sobre cómo podemos colaborar para hacerlo realidad.
+                </p>
+                
+                <div class="social-links">
+                    <a href="https://twitter.com/tuusuario" class="social-link" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://youtube.com/tucanal" class="social-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://github.com/tuusuario" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/tuperfil" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:produccionesmino@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2024 MINO MW. Todos los derechos reservados.</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">produccionesmino@gmail.com</p>
+                </div>
             </div>
-            <p>&copy; 2025 Milton M. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>
-
 </html>
